@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "169678613722",
+    "project_id": "waddler-80db2",
+    "storage_bucket": "waddler-80db2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169678613722:android:835f02ef1f457e05d849e3",
+        "android_client_info": {
+          "package_name": "com.example.waddler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "169678613722-qgi2invhkks6bp24uklf40o7igpjllj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.waddler",
+            "certificate_hash": "aededd1ecdba17c2f8a384a7b727167571e2684b"
+          }
+        },
+        {
+          "client_id": "169678613722-2onjs10h12if1jhjgtq8sdri4ppmaksk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5HOmhON5cuIY6UqYJC9qDMvrbVWYExF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "169678613722-2onjs10h12if1jhjgtq8sdri4ppmaksk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
