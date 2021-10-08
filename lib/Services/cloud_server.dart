@@ -10,7 +10,7 @@ class CloudServer{
 
   // Future<List<NearByLocationModel>>
   Future<NearByLocationModel> fetchFromMapByNear({double? lan,double? lat})async{
-    var url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=day+care+center&location=73.0479,33.6844&fields=photos,formatted_address,name,opening_hours,icon,rating&radius=5000&key=AIzaSyB3PH6hatKMI2ANb09-g1IWSO2UTTZPAN4";
+    var url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=day+care+center&location=73.0479,33.6844&fields=photos,formatted_address,name,opening_hours,icon,rating&radius=5000&key=AIzaSyCuZIv2tjWcSV3br1tdPJ6fEpK_oKBwc9o";
     // var url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=day+care+center&location=$lan,$lat&fields=photos,formatted_address,name,opening_hours,icon,rating&radius=5000&key=AIzaSyB3PH6hatKMI2ANb09-g1IWSO2UTTZPAN4";
 
     var finalUrl = Uri.parse(url);
