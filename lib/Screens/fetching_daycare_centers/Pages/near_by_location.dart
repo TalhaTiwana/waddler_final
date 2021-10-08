@@ -210,7 +210,6 @@ class _BottomSheetState extends State<BottomSheet> {
     return InkWell(
       onTap:(){
         MapsLauncher.launchQuery(widget.address);
-
       },
       child: Container(
         padding: EdgeInsets.only(top: size.height*0.02,left: size.width*0.03,right: size.width*0.03,bottom: size.height*0.02),
