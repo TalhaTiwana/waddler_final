@@ -63,7 +63,8 @@ dependencies:
   firebase_messaging:
   flutter_local_notifications:
   maps_launcher: ^2.0.1
-
+  flutter_staggered_animations: ^1.0.0
+  stripe_payment: ^1.1.4
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +94,7 @@ flutter:
     - assets/
     - assets/credentials.json
     - images/
+    - images/main_screen/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

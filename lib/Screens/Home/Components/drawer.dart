@@ -62,27 +62,26 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return Container(
       width: size.width * 0.63,
       height: size.height,
-      decoration: const BoxDecoration(color: Colors.white,
-      borderRadius: BorderRadius.only(topRight:Radius.circular(50))
-      ),
+      decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(topRight: Radius.circular(50))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             decoration: const BoxDecoration(
                 color: Colors.black,
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(50),
-                topRight: Radius.circular(50)
-                )
-            ),
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(50),
+                    topRight: Radius.circular(50))),
             child: Column(
               children: [
                 SizedBox(
                   height: size.height * 0.03,
                 ),
                 Container(
-                  width: size.width*0.45,
-                  margin: EdgeInsets.only(right: size.width*0.04),
+                  width: size.width * 0.45,
+                  margin: EdgeInsets.only(right: size.width * 0.04),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -117,11 +116,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             width: size.width * 0.17,
                             height: size.width * 0.17,
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: NetworkImage(urlChildImage),
-                                    fit: BoxFit.fill),
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image: NetworkImage(urlChildImage),
+                                  fit: BoxFit.fill),
                             ),
                           ),
                           SizedBox(
@@ -157,90 +156,99 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
           ),
           SizedBox(
-            height: size.height*0.03,
+            height: size.height * 0.03,
+          ),
+          drawerTile(
+            size: size,
+            onTap: () {
+              Navigator.pop(context);
+              screenPush(context, Profile());
+            },
+            title: "Profile",
+          ),
+          drawerTile(
+            size: size,
+            onTap: () {
+              Navigator.pop(context);
+              screenPush(context, FDC());
+            },
+            title: "Daycare Center",
+          ),
+          drawerTile(
+            size: size,
+            onTap: () {
+              Navigator.pop(context);
+              screenPush(
+                  context,
+                  Surveillance(
+                    channel:
+                        IOWebSocketChannel.connect('ws://34.131.222.72:65080'),
+                  ),
+              );
+            },
+            title: "Live Surveillance",
+          ),
+          drawerTile(
+            size: size,
+            onTap: () {
+              Navigator.pop(context);
+              screenPush(context, GPSTracking());
+            },
+            title: "GPS Tracking",
           ),
           drawerTile(
               size: size,
-              onTap: () {
+              onTap: () async {
                 Navigator.pop(context);
-                screenPush(context, Profile());
+                screenPush(context, Chat());
               },
-              title: "Profile",
+              title: "Chat Medium",
+              icon: Icons.chat),
+          drawerTile(
+            size: size,
+            onTap: () {
+              Navigator.pop(context);
+              screenPush(context, OnlinePayment());
+            },
+            title: "Online Payment",
+          ),
+          drawerTile(
+            size: size,
+            onTap: () {
+              Navigator.pop(context);
+              screenPush(context, OnlinePayment());
+            },
+            title: "Configuration",
+          ),
+          drawerTile(
+            size: size,
+            onTap: () {
+              Navigator.pop(context);
+              screenPush(context, FAQ());
+            },
+            title: "FAQ",
+          ),
+          InkWell(
+            onTap: () {
+              _showDialog(size, context);
+            },
+            child: Container(
+              margin: EdgeInsets.only(
+                  left: size.width * 0.04, top: size.height * 0.03),
+              width: size.width * 0.3,
+              alignment: Alignment.center,
+              height: size.height * 0.06,
+              decoration: BoxDecoration(
+                  color: Colors.black, borderRadius: BorderRadius.circular(30)),
+              child: Text(
+                "Sign Out",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: size.width * 0.043,
+                    color: Colors.white),
               ),
-          drawerTile(
-              size: size,
-              onTap: () {
-                Navigator.pop(context);
-                screenPush(context, FDC());
-              },
-              title: "Daycare Center",),
-          drawerTile(
-              size: size,
-              onTap: () {
-                Navigator.pop(context);
-                screenPush(context, Surveillance(
-channel:  IOWebSocketChannel.connect('ws://34.131.222.72:65080'),
-                ));
-              },
-              title: "Live Surveillance",
-              ),
-          drawerTile(
-              size: size,
-              onTap: () {
-                Navigator.pop(context);
-                screenPush(context, GPSTracking());
-              },
-              title: "GPS Tracking",
-              ),
-          drawerTile(
-              size: size, onTap: ()async {
-            Navigator.pop(context);
-            screenPush(context, Chat());
-          }, title: "Chat Medium", icon: Icons.chat),
-          drawerTile(
-              size: size,
-              onTap: () {
-                Navigator.pop(context);
-                screenPush(context, OnlinePayment());
-              },
-              title: "Online Payment",
-              ),
-          drawerTile(
-              size: size,
-              onTap: () {
-                Navigator.pop(context);
-                screenPush(context, OnlinePayment());
-              },
-              title: "Configuration",
-              ),
-          drawerTile(
-              size: size,
-              onTap: () {
-                Navigator.pop(context);
-                screenPush(context, FAQ());
-              },
-              title: "FAQ",
-              ),
-        InkWell(
-          onTap: (){
-            _showDialog(size, context);
-          },
-          child: Container(
-            margin: EdgeInsets.only(left: size.width*0.04,top: size.height*0.03),
-            width: size.width*0.3,
-               alignment: Alignment.center,
-            height: size.height*0.06,
-            decoration: BoxDecoration(
-              color: Colors.black,
-borderRadius: BorderRadius.circular(30)
             ),
-            child: Text("Sign Out",style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: size.width*0.043,
-              color: Colors.white
-            ),),
-          ),
-        )
+          )
         ],
       ),
     );
@@ -256,7 +264,6 @@ borderRadius: BorderRadius.circular(30)
             onPressed: () {
               FirebaseAuth.instance.signOut().whenComplete(() {
                 Fluttertoast.showToast(msg: 'Successfully logout');
-
               });
               Navigator.pop(context);
               screenPushRep(context, LoginScreen());
@@ -274,7 +281,11 @@ borderRadius: BorderRadius.circular(30)
     );
   }
 
-  Widget drawerTile({required Size size, IconData? icon, required String title, required onTap}) {
+  Widget drawerTile(
+      {required Size size,
+      IconData? icon,
+      required String title,
+      required onTap}) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -289,10 +300,10 @@ borderRadius: BorderRadius.circular(30)
             ),
             Text(
               "$title",
-              style:
-                  TextStyle(color: Colors.black, fontSize: size.width * 0.045,
-                  fontWeight: FontWeight.w500
-                  ),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: size.width * 0.045,
+                  fontWeight: FontWeight.w500),
             ),
           ],
         ),

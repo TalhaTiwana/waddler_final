@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:waddler/Chatbot.dart';
 import 'package:waddler/sign_in.dart';
 
+import 'CareCenterList.dart';
 
 class SignUpChild extends StatefulWidget {
   @override
   _SignUpChildState createState() => _SignUpChildState();
 }
 
-
 class _SignUpChildState extends State<SignUpChild> {
-  final keys = GlobalKey<FormState> ();
+  final keys = GlobalKey<FormState>();
   bool firstbox = false;
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,8 @@ class _SignUpChildState extends State<SignUpChild> {
                         labelText: "Child's Name",
                         icon: Icon(Icons.person),
                       ),
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Please Enter the details';
                         }
                         return null;
@@ -48,8 +48,8 @@ class _SignUpChildState extends State<SignUpChild> {
                         labelText: "Child's Age",
                         icon: Icon(Icons.child_care),
                       ),
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Please Enter the details';
                         }
                         return null;
@@ -61,8 +61,8 @@ class _SignUpChildState extends State<SignUpChild> {
                         labelText: "Child's gender",
                         icon: Icon(Icons.star),
                       ),
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Please Enter the details';
                         }
                         return null;
@@ -74,52 +74,53 @@ class _SignUpChildState extends State<SignUpChild> {
                         labelText: "Date of Birth",
                         icon: Icon(Icons.date_range),
                       ),
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Please Enter the details';
                         }
                         return null;
                       },
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter Child's Blood Group",
                         labelText: "Blood Group",
                         icon: Icon(Icons.medical_services),
                       ),
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Please Enter the details';
                         }
                         return null;
                       },
                     ),
-
                     Container(
                       child: Column(
                         children: [
                           Checkbox(
                             value: this.firstbox,
-                            onChanged: (bool? value){
-                            },
+                            onChanged: (bool? value) {},
                           ),
-                          Text("I accept the terms and conditions of the application"),
+                          const Text(
+                              "I accept the terms and conditions of the application"),
                         ],
                       ),
                     ),
-                    Container(
-                      child: RaisedButton(
-                        child: Text("SignUp"),
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder:(context)=> CareCenterList()));
-                        },
-                      ),
+                    MaterialButton(
+                      child: const Text("SignUp"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CareCenterList()));
+                      },
                     ),
                     Text("Already Have an Account?"),
                     RaisedButton(
                       child: Text("Sign In"),
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder:(context)=> SignIn()));
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SignIn()));
                       },
                     ),
                   ],
@@ -132,5 +133,3 @@ class _SignUpChildState extends State<SignUpChild> {
     );
   }
 }
-
-

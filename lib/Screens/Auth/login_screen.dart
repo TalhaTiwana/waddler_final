@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:waddler/Common/common_functions.dart';
 import 'package:waddler/Providers/auth_providers.dart';
 import 'package:waddler/Screens/Auth/singup_screen_parents.dart';
-import 'package:waddler/Screens/Home/home_screen.dart';
+import 'package:waddler/Screens/Home/weather_screen.dart';
 import 'package:waddler/Services/firebase_auth.dart';
 import 'package:waddler/Style/colors.dart';
 
@@ -280,7 +280,7 @@ singIn(BuildContext context)async{
     if(errorOnPassword ==null && errorOnEmail == null){
      var data  = await  Authentication().signInWithEmail(email: _controllerEmail.text,password: _controllerPassword.text,context: context);
      if(data!=null){
-       screenPushRep(context, HomeScreen());
+       screenPushRep(context, WeatherScreen());
        setState(() {
          loading = false;
        });

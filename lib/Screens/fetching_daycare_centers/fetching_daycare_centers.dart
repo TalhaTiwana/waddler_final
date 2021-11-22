@@ -19,7 +19,7 @@ class FDC extends StatefulWidget {
 }
 
 class _FDCState extends State<FDC> {
-  String cloudKey = "AIzaSyCuZIv2tjWcSV3br1tdPJ6fEpK_oKBwc9o";
+  String cloudKey = "AIzaSyBkYmRni1_L_2IqaTG-6nNWAOhINbMKHcg";
   late Position position;
   late LatLng _latLng;
   var image;
@@ -28,272 +28,267 @@ class _FDCState extends State<FDC> {
     Size size = MediaQuery.of(context).size;
 
     return SafeArea(
-        child: Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.blue,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.blue,
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: size.width * 0.8,
+                child: Image.asset(
+                  'images/bgImg.png',
                 ),
               ),
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-            ),
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: size.width * 0.8,
-                    child: Image.asset(
-                      'images/bgImg.png',
+              Container(
+                width: size.width,
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                decoration:
+                    BoxDecoration(color: Colors.blue.shade100.withOpacity(0.5)),
+                child: Column(
+                  children: [
+                    Text(
+                      "Look no further",
+                      style: GoogleFonts.cabin(
+                          color: Colors.black, fontSize: size.width * 0.044),
                     ),
-                  ),
-                  Container(
-                    width: size.width,
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    decoration: BoxDecoration(
-                        color: Colors.blue.shade100.withOpacity(0.5)),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Look no further",
-                          style: GoogleFonts.cabin(
-                              color: Colors.black,
-                              fontSize: size.width * 0.044),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
-                        Text(
-                          'Find the best daycare centers near you',
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      height: size.height * 0.01,
                     ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  Text(
-                    'Choose an option',
-                    style: TextStyle(
-                      fontSize: size.width * 0.055,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Find the best daycare centers near you',
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              Text(
+                'Choose an option',
+                style: TextStyle(
+                  fontSize: size.width * 0.055,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              InkWell(
+                onTap: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlacePicker(
+                        hintText: "Search DayCare center here..",
+                        apiKey:
+                            "AIzaSyBkYmRni1_L_2IqaTG-6nNWAOhINbMKHcg", // Put YOUR OWN KEY here.
+                        onPlacePicked: (result) {
+                          Navigator.of(context).pop();
+                          print("\n\n");
+                          print(
+                              "Adress ${result.formattedAddress} \n Phone number:${result.internationalPhoneNumber} ${result.formattedPhoneNumber}\n"
+                              "Place name: ${result.name} ${result.rating}\n"
+                              "URL: ${result.url}\n"
+                              "Reviews: ${result.reviews![0].text}\n"
+                              "official website: ${result.website}\n"
+                              "Scope: ${result.scope}\n");
+                          settingModalBottomSheetAddress(
+                            name: result.name,
+                            size: size,
+                            context: context,
+                            address: result.formattedAddress,
+                            phoneNumber: result.internationalPhoneNumber ??
+                                result.formattedPhoneNumber,
+                            reviews: result.reviews,
+                            rating: result.rating,
+                            url: result.url,
+                            website: result.website.toString(),
+                          );
+                        },
+                        useCurrentLocation: true,
+                        initialPosition: const LatLng(33.6844, 73.0479),
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10, bottom: 3),
+                  width: size.width * 0.9,
+                  padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
+                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade400,
+                        spreadRadius: 2,
+                        offset: const Offset(1, 1),
+                        blurRadius: 2)
+                  ]),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.location_pin,
+                        color: const Color(0xff1693bf),
+                        size: size.width * 0.1,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Search by Location',
+                        style: TextStyle(
+                          color: Color(0xff1693bf),
+                          fontSize: size.width * 0.037,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
-                  InkWell(
-                    onTap: () async {
-                      Navigator.push(
+                ),
+              ),
+              InkWell(
+                onTap: () async {
+                  Geolocator.getCurrentPosition(
+                          desiredAccuracy: LocationAccuracy.high)
+                      .then((value) {
+                    position = value;
+                  }).whenComplete(() async {
+                    screenPush(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => PlacePicker(
-                            hintText: "Search DayCare center here..",
-                            apiKey:
-                                "AIzaSyCuZIv2tjWcSV3br1tdPJ6fEpK_oKBwc9o", // Put YOUR OWN KEY here.
-                            onPlacePicked: (result) {
-                              Navigator.of(context).pop();
-                              print("\n\n");
-                              print(
-                                  "Adress ${result.formattedAddress} \n Phone number:${result.internationalPhoneNumber} ${result.formattedPhoneNumber}\n"
-                                  "Place name: ${result.name} ${result.rating}\n"
-                                  "URL: ${result.url}\n"
-                                  "Reviews: ${result.reviews![0].text}\n"
-                                  "official website: ${result.website}\n"
-                                  "Scope: ${result.scope}\n");
-                              settingModalBottomSheetAddress(
-                                name: result.name,
-                                size: size,
-                                context: context,
-                                address: result.formattedAddress,
-                                phoneNumber: result.internationalPhoneNumber ??
-                                    result.formattedPhoneNumber,
-                                reviews: result.reviews,
-                                rating: result.rating,
-                                url: result.url,
-                                website: result.website.toString(),
-                              );
-                            },
-                            useCurrentLocation: true,
-                            initialPosition: const LatLng(33.6844, 73.0479),
-                          ),
+                        NearByLocation(
+                            lat: position.latitude, lon: position.longitude));
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10, bottom: 3),
+                  width: size.width * 0.9,
+                  padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
+                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade400,
+                        spreadRadius: 2,
+                        offset: const Offset(1, 1),
+                        blurRadius: 2)
+                  ]),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.my_location_rounded,
+                        color: const Color(0xff1693bf),
+                        size: size.width * 0.1,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Automatic nearby search',
+                        style: TextStyle(
+                          color: const Color(0xff1693bf),
+                          fontSize: size.width * 0.037,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Geolocator.getCurrentPosition(
+                          desiredAccuracy: LocationAccuracy.high)
+                      .then((value) {
+                    position = value;
+                  }).whenComplete(() async {
+                    CloudServer()
+                        .fetchFromMapByNear(
+                            lat: position.latitude, lan: position.longitude)
+                        .then((value) {
+                      value.results!
+                          .sort((a, b) => b.rating!.compareTo(a.rating as num));
+                      screenPush(
+                        context,
+                        SearchByRating(
+                          data: value.results as List<dynamic>,
                         ),
                       );
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 10, bottom: 3),
-                      width: size.width * 0.9,
-                      padding:
-                          EdgeInsets.symmetric(vertical: size.height * 0.02),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.shade400,
-                            spreadRadius: 2,
-                            offset: const Offset(1, 1),
-                            blurRadius: 2)
-                      ]),
-                      child: Column(
+                    });
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10, bottom: 3),
+                  width: size.width * 0.9,
+                  padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
+                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade400,
+                        spreadRadius: 2,
+                        offset: const Offset(1, 1),
+                        blurRadius: 2)
+                  ]),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.location_pin,
+                            Icons.star_rate,
                             color: const Color(0xff1693bf),
-                            size: size.width * 0.1,
+                            size: size.width * 0.07,
                           ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            'Search by Location',
-                            style: TextStyle(
-                              color: Color(0xff1693bf),
-                              fontSize: size.width * 0.037,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      Geolocator.getCurrentPosition(
-                              desiredAccuracy: LocationAccuracy.high)
-                          .then((value) {
-                        position = value;
-                      }).whenComplete(() async {
-                        screenPush(
-                            context,
-                            NearByLocation(
-                                lat: position.latitude,
-                                lon: position.longitude));
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 10, bottom: 3),
-                      width: size.width * 0.9,
-                      padding:
-                          EdgeInsets.symmetric(vertical: size.height * 0.02),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.shade400,
-                            spreadRadius: 2,
-                            offset: const Offset(1, 1),
-                            blurRadius: 2)
-                      ]),
-                      child: Column(
-                        children: [
                           Icon(
-                            Icons.my_location_rounded,
+                            Icons.star_rate,
                             color: const Color(0xff1693bf),
-                            size: size.width * 0.1,
+                            size: size.width * 0.07,
                           ),
-                          const SizedBox(
-                            height: 5,
+                          Icon(
+                            Icons.star_rate,
+                            color: const Color(0xff1693bf),
+                            size: size.width * 0.07,
                           ),
-                          Text(
-                            'Automatic nearby search',
-                            style: TextStyle(
-                              color: const Color(0xff1693bf),
-                              fontSize: size.width * 0.037,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
+                          Icon(
+                            Icons.star_rate,
+                            color: const Color(0xff1693bf),
+                            size: size.width * 0.07,
+                          ),
+                          Icon(
+                            Icons.star_rate,
+                            color: const Color(0xff1693bf),
+                            size: size.width * 0.07,
+                          ),
                         ],
                       ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Geolocator.getCurrentPosition(
-                              desiredAccuracy: LocationAccuracy.high)
-                          .then((value) {
-                        position = value;
-                      }).whenComplete(() async {
-                        CloudServer()
-                            .fetchFromMapByNear(
-                                lat: position.latitude, lan: position.longitude)
-                            .then((value) {
-                          value.results!.sort((a, b) => b.rating!.compareTo(a.rating as num));
-                          screenPush(
-                              context,
-                              SearchByRating(
-                                data: value.results as List<dynamic>,
-                              ),
-                          );
-                        });
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 10, bottom: 3),
-                      width: size.width * 0.9,
-                      padding:
-                          EdgeInsets.symmetric(vertical: size.height * 0.02),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.shade400,
-                            spreadRadius: 2,
-                            offset: const Offset(1, 1),
-                            blurRadius: 2)
-                      ]),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.star_rate,
-                                color: const Color(0xff1693bf),
-                                size: size.width * 0.07,
-                              ),
-                              Icon(
-                                Icons.star_rate,
-                                color: const Color(0xff1693bf),
-                                size: size.width * 0.07,
-                              ),
-                              Icon(
-                                Icons.star_rate,
-                                color: const Color(0xff1693bf),
-                                size: size.width * 0.07,
-                              ),
-                              Icon(
-                                Icons.star_rate,
-                                color: const Color(0xff1693bf),
-                                size: size.width * 0.07,
-                              ),
-                              Icon(
-                                Icons.star_rate,
-                                color: const Color(0xff1693bf),
-                                size: size.width * 0.07,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Sort by Rating',
-                            style: TextStyle(
-                              color: Color(0xff1693bf),
-                              fontSize: size.width * 0.037,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
+                      Text(
+                        'Sort by Rating',
+                        style: TextStyle(
+                          color: const Color(0xff1693bf),
+                          fontSize: size.width * 0.037,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
-                ],
+                ),
               ),
-            )));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   settingModalBottomSheetAddress(
