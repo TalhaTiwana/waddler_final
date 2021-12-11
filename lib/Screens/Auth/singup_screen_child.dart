@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -75,11 +76,16 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
   }
 
   File? file;
- @override
+  var textColor;
+
+  @override
   void initState() {
     super.initState();
     picState = true;
     state = true;
+    textColor = GetStorage().read('isDark') == true
+        ? Colors.white
+        : Colors.black;
     uploadImageBtnTxt = "Upload Child's Picture";
  }
 
@@ -97,19 +103,24 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
 
     return SafeArea(
         child: Scaffold(
-      backgroundColor: bgColor,
+          backgroundColor:  GetStorage().read('isDark') == true
+              ? primaryClrDarkTheme
+              : primaryClrLightTheme,
       appBar: AppBar(
         elevation: 0,
+        backgroundColor:  GetStorage().read('isDark') == true
+            ? primaryClrDarkTheme
+            : primaryClrLightTheme,
+
         leading: IconButton(
-          icon: const Icon(
+          icon:  Icon(
             Icons.arrow_back_rounded,
-            color: Colors.black,
+            color:  textColor,
           ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: bgColor,
       ),
       body: Container(
         width: size.width,
@@ -124,7 +135,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                   child: Text(
                     "Child's info",
                     style: GoogleFonts.zillaSlab(
-                        color: Colors.black,
+                        color:textColor,
                         fontSize: size.width * 0.06,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.8),
@@ -145,7 +156,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                       child: Text(
                         "Child's Age",
                         style: GoogleFonts.zillaSlab(
-                          color: Colors.black,
+                          color: textColor,
                           fontSize: size.width * 0.045,
                           fontWeight: FontWeight.w400,
                           letterSpacing: 1,
@@ -167,7 +178,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                   hint: Text(
                     childsAge == null ? "Child's Age" : "   $childsAge",
                     style: GoogleFonts.zillaSlab(
-                      color: Colors.black,
+                      color: textColor,
                       fontSize: size.width * 0.045,
                       fontWeight: FontWeight.w400,
                       letterSpacing: 1,
@@ -194,7 +205,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                       child: Text(
                         "Blood Group",
                         style: GoogleFonts.zillaSlab(
-                          color: Colors.black,
+                          color: textColor,
                           fontSize: size.width * 0.045,
                           fontWeight: FontWeight.w400,
                           letterSpacing: 1,
@@ -216,7 +227,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                   hint: Text(
                     bloodGroup == null ? "Blood Group" : "    $bloodGroup",
                     style: GoogleFonts.zillaSlab(
-                      color: Colors.black,
+                      color: textColor,
                       fontSize: size.width * 0.045,
                       fontWeight: FontWeight.w400,
                       letterSpacing: 1,
@@ -243,14 +254,15 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                       left: size.width * 0.024,
                       right: size.width * 0.024),
                   child: DropdownButton<String>(
-                    iconEnabledColor: primaryClrLightTheme,
+                    dropdownColor: textColor,
+                    iconEnabledColor: textColor,
                     isExpanded: true,
                     elevation: 2,
                     hint: bloodGroupValue == null
                         ? Text(
                             "Positive or Negative",
                             style: GoogleFonts.zillaSlab(
-                              color: Colors.black,
+                              color: textColor,
                               fontSize: size.width * 0.045,
                               fontWeight: FontWeight.w400,
                               letterSpacing: 1,
@@ -259,7 +271,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                         : Text(
                             "  $bloodGroupValue",
                             style: GoogleFonts.zillaSlab(
-                              color: Colors.black,
+                              color: textColor,
                               fontSize: size.width * 0.07,
                               fontWeight: FontWeight.w400,
                               letterSpacing: 1,
@@ -287,7 +299,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                     Text(
                       "Select a Gender:",
                       style: GoogleFonts.zillaSlab(
-                          color: Colors.black,
+                          color: textColor,
                           fontWeight: FontWeight.w500,
                           fontSize: size.width * 0.04),
                     ),
@@ -300,11 +312,13 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                         Text(
                           "Male",
                           style: GoogleFonts.zillaSlab(
-                              color: Colors.black,
+                              color: textColor,
                               fontWeight: FontWeight.w500,
                               fontSize: size.width * 0.05),
                         ),
                         Radio(
+                          activeColor: textColor,
+
                           value: "Male",
                           groupValue: gender,
                           onChanged: (value) {
@@ -322,13 +336,14 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                         Text(
                           "Female",
                           style: GoogleFonts.zillaSlab(
-                              color: Colors.black,
+                              color: textColor,
                               fontWeight: FontWeight.w500,
                               fontSize: size.width * 0.05),
                         ),
                         Radio(
                           value: "Female",
                           groupValue: gender,
+                          activeColor: textColor,
                           onChanged: (value) {
                             setState(() {
                               gender = value as String;

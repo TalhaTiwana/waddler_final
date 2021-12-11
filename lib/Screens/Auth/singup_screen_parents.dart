@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -64,12 +65,15 @@ class _SignUpScreenParentsState extends State<SignUpScreenParents> {
   String? error;
   late bool state;
   late bool uploadButtonState;
+  var textColor;
   @override
   void initState() {
     super.initState();
     state = true;
     uploadButtonState = true;
-
+    textColor = GetStorage().read('isDark') == true
+    ? Colors.white
+        : Colors.black;
     buttonText = "Upload parent Image";
 
   }
@@ -90,19 +94,23 @@ class _SignUpScreenParentsState extends State<SignUpScreenParents> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-      backgroundColor: bgColor,
+        backgroundColor:  GetStorage().read('isDark') == true
+              ? primaryClrDarkTheme
+              : primaryClrLightTheme,
       appBar: AppBar(
+        backgroundColor:  GetStorage().read('isDark') == true
+            ? primaryClrDarkTheme
+            : primaryClrLightTheme,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_rounded,
-            color: Colors.black,
+            color: textColor,
           ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: bgColor,
 
       ),
       body: Container(
@@ -119,7 +127,7 @@ class _SignUpScreenParentsState extends State<SignUpScreenParents> {
                   child: Text(
                     "Create An Account",
                     style: GoogleFonts.zillaSlab(
-                        color: Colors.black,
+                        color: textColor,
                         fontSize: size.width * 0.06,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 0.8),
@@ -130,7 +138,7 @@ class _SignUpScreenParentsState extends State<SignUpScreenParents> {
                   child: Text(
                     "Parent's Info",
                     style: GoogleFonts.zillaSlab(
-                        color: Colors.black,
+                        color: textColor,
                         fontSize: size.width * 0.06,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.8),

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:waddler/Common/common_functions.dart';
 import 'package:waddler/Providers/auth_providers.dart';
 import 'package:waddler/Screens/Auth/singup_screen_parents.dart';
+import 'package:waddler/Screens/Auth/verification_screen.dart';
 import 'package:waddler/Screens/Home/weather_screen.dart';
 import 'package:waddler/Screens/main_screen/main_screen.dart';
 import 'package:waddler/Services/firebase_auth.dart';
@@ -35,6 +38,86 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordIsVisible = true;
   }
 
+  errorCheck(int code, String text) {
+    if (code == 1) {
+      if (EmailValidator.validate(text)) {
+        setState(() {
+          errorOnEmail = null;
+        });
+      } else {
+        setState(() {
+          errorOnEmail = "Email is not Valid";
+        });
+      }
+    } else if (code == 2) {
+      if (text.length < 5) {
+        setState(() {
+          errorOnPassword = "Password is short";
+        });
+      } else {
+        setState(() {
+          errorOnPassword = null;
+        });
+      }
+    }
+  }
+
+  singIn(BuildContext context) async {
+    if (errorOnPassword == null && errorOnEmail == null) {
+      var data = await Authentication().signInWithEmail(
+          email: _controllerEmail.text,
+          password: _controllerPassword.text,
+          context: context);
+      if (data != null) {
+        FirebaseFirestore.instance
+            .collection('Users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get()
+            .then((value) {
+          // print("user id => ${FirebaseAuth.instance.currentUser!.uid}");
+          bool isVerified = value.get('userIsVerified');
+          String number = value.get('phnNum');
+          if (isVerified) {
+            screenPushRep(context, const MainScreen());
+          } else {
+            screenPushRep(
+              context,
+              VerificationScreen(
+                email: _controllerEmail.text,
+                password: _controllerPassword.text,
+                phoneNumber: number,
+              ),
+            );
+          }
+        });
+        setState(() {
+          loading = false;
+        });
+      } else {
+        setState(() {
+          loading = false;
+        });
+        Fluttertoast.showToast(
+            msg: Provider.of<AUthProvider>(context, listen: false)
+                .loginErrorGet(),
+            textColor: Colors.white,
+            backgroundColor: Colors.red.shade900);
+      }
+    } else {
+      if (errorOnEmail != null) {
+        Fluttertoast.showToast(
+            msg: '$errorOnEmail',
+            textColor: Colors.white,
+            backgroundColor: Colors.red.shade900);
+      } else if (errorOnPassword != null) {
+        Fluttertoast.showToast(
+            msg: '$errorOnPassword',
+            textColor: Colors.white,
+            backgroundColor: Colors.red.shade900);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -46,8 +129,15 @@ class _LoginScreenState extends State<LoginScreen> {
           width: size.width,
           height: size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [primaryClrLightTheme, primaryDarkClrLightTheme]),
+            gradient: LinearGradient(colors: [
+              GetStorage().read('isDark') == true
+                  ? primaryClrDarkTheme
+                  : primaryClrLightTheme,
+              primaryClrLightTheme,
+              GetStorage().read('isDark') == true
+                  ? primaryDarkClrDarkTheme
+                  : primaryDarkClrDarkTheme
+            ]),
           ),
           child: SingleChildScrollView(
             child: Column(
@@ -270,65 +360,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  errorCheck(int code, String text) {
-    if (code == 1) {
-      if (EmailValidator.validate(text)) {
-        setState(() {
-          errorOnEmail = null;
-        });
-      } else {
-        setState(() {
-          errorOnEmail = "Email is not Valid";
-        });
-      }
-    } else if (code == 2) {
-      if (text.length < 5) {
-        setState(() {
-          errorOnPassword = "Password is short";
-        });
-      } else {
-        setState(() {
-          errorOnPassword = null;
-        });
-      }
-    }
-  }
-
-  singIn(BuildContext context) async {
-    if (errorOnPassword == null && errorOnEmail == null) {
-      var data = await Authentication().signInWithEmail(
-          email: _controllerEmail.text,
-          password: _controllerPassword.text,
-          context: context);
-      if (data != null) {
-        screenPushRep(context, const MainScreen());
-        setState(() {
-          loading = false;
-        });
-      } else {
-        setState(() {
-          loading = false;
-        });
-        Fluttertoast.showToast(
-            msg:
-                '${Provider.of<AUthProvider>(context, listen: false).loginErrorGet()}',
-            textColor: Colors.white,
-            backgroundColor: Colors.red.shade900);
-      }
-    } else {
-      if (errorOnEmail != null) {
-        Fluttertoast.showToast(
-            msg: '$errorOnEmail',
-            textColor: Colors.white,
-            backgroundColor: Colors.red.shade900);
-      } else if (errorOnPassword != null) {
-        Fluttertoast.showToast(
-            msg: '$errorOnPassword',
-            textColor: Colors.white,
-            backgroundColor: Colors.red.shade900);
-      }
-    }
   }
 }

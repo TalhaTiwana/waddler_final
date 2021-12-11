@@ -723,6 +723,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
+  pin_code_fields:
+    dependency: "direct main"
+    description:
+      name: pin_code_fields
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.3.0"
   platform:
     dependency: transitive
     description:
@@ -889,6 +896,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  twilio_flutter:
+    dependency: "direct main"
+    description:
+      name: twilio_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.9"
   typed_data:
     dependency: transitive
     description:

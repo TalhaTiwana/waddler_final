@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waddler/Common/common_functions.dart';
 import 'package:waddler/Screens/Auth/login_screen.dart';
@@ -60,14 +61,28 @@ class _MainScreenState extends State<MainScreen> {
     'Online \nPayment',
     'F.A.Q',
     'Settings',
-        'Logout'
+    'Logout'
   ];
+  var textColor;
+  @override
+  void initState() {
+    super.initState();
+    updateColor();
+  }
+
+  updateColor() {
+    textColor =
+        GetStorage().read('isDark') == true ? Colors.white : Colors.black;
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: GetStorage().read('isDark') == true
+            ? primaryDarkClrDarkTheme
+            : primaryDarkClrLightTheme,
         body: Container(
           padding: const EdgeInsets.only(top: 20),
           margin: const EdgeInsets.symmetric(horizontal: 14),
@@ -80,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
               Text(
                 "Welcome Back!",
                 style: GoogleFonts.cabin(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: size.width * 0.075,
                   fontWeight: FontWeight.w600,
                 ),
@@ -103,11 +118,12 @@ class _MainScreenState extends State<MainScreen> {
                           child: ScaleAnimation(
                             child: FadeInAnimation(
                               child: InkWell(
-                                onTap: () {
+                                onTap: () async {
                                   if (index == 8) {
                                     _showDialog(size, context);
                                   } else {
-                                    screenPush(context, widgets[index]);
+                                    await screenPush(context, widgets[index]);
+                                    updateColor();
                                   }
                                 },
                                 child: Container(
@@ -130,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
                                         child: Text(
                                           titles[index],
                                           style: GoogleFonts.rubik(
-                                            color: Colors.white,
+                                            color: textColor,
                                             letterSpacing: 1,
                                             fontWeight: FontWeight.w500,
                                             fontSize: size.width * 0.06,

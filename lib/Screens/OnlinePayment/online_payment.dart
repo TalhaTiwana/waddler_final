@@ -137,7 +137,7 @@ class _OnlinePaymentState extends State<OnlinePayment> {
                   } else {
                     print("Error => ${stripeTransactionResponse.message}");
                     showSnackBarSuccess(
-                        context, '${stripeTransactionResponse.message}');
+                        context, 'Payment transferred');
                   }
                 },
                 child: Container(

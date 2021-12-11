@@ -13,14 +13,16 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool status = false;
+  bool themeStatus = false;
+  bool notificationStatus = false;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: GetStorage().read('isDark')==true?Colors.black:Colors.white,
+        backgroundColor:
+            GetStorage().read('isDark') == true ? Colors.black : Colors.white,
         appBar: AppBar(
           title: const Text('Settings'),
           backgroundColor: primaryDarkClrLightTheme,
@@ -28,7 +30,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         body: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -57,23 +59,59 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     height: size.height * 0.06,
                     valueFontSize: 25.0,
                     toggleSize: 45.0,
-                    value: status,
+                    value: themeStatus,
                     borderRadius: 30.0,
                     padding: 8.0,
                     showOnOff: true,
                     onToggle: (val) {
                       setState(() {
-                        status = val;
-                        GetStorage().write('isDark',val);
-                        setState(() {
-
-                        });
+                        themeStatus = val;
+                        GetStorage().write('isDark', val);
+                        setState(() {});
                       });
                     },
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  'Notification: ',
+                  style: GoogleFonts.rubik(
+                      color: GetStorage().read('isDark') == true
+                          ? Colors.white
+                          : Colors.black,
+                      fontSize: size.width * 0.045,
+                      fontWeight: FontWeight.w500),
+                ),
+                Container(
+                  child: FlutterSwitch(
+                    width: size.width * 0.25,
+                    activeColor: primaryClrDarkTheme,
+                    inactiveColor: primaryClrLightTheme,
+                    height: size.height * 0.06,
+                    valueFontSize: 25.0,
+                    toggleSize: 45.0,
+                    value: notificationStatus,
+                    borderRadius: 30.0,
+                    padding: 8.0,
+                    showOnOff: true,
+                    onToggle: (val) {
+                      setState(() {
+                        notificationStatus = val;
+                        GetStorage().write('notificationIsOn', val);
+                        setState(() {});
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -76,6 +76,8 @@ dependencies:
 
   # open pdf document
   open_file: ^3.1.0
+  twilio_flutter: ^0.0.9
+  pin_code_fields: ^7.3.0
 
 
 dev_dependencies:

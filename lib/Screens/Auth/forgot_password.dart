@@ -15,12 +15,22 @@ class ForGotPassword extends StatefulWidget {
 class _ForGotPasswordState extends State<ForGotPassword> {
   final TextEditingController _controller = TextEditingController();
   bool buttonIsPressed = false;
+  var textColor;
+
+  @override
+  void initState() {
+    textColor =
+        GetStorage().read('isDark') == true ? Colors.white : Colors.black;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-          backgroundColor: GetStorage().read('isDark')==true?Colors.black:Colors.white,
+      backgroundColor:
+          GetStorage().read('isDark') == true ? Colors.black : Colors.white,
       body: Container(
         width: size.width,
         decoration: BoxDecoration(
@@ -39,7 +49,7 @@ class _ForGotPasswordState extends State<ForGotPassword> {
             Text(
               "ForgotPassword",
               style: GoogleFonts.cabin(
-                  color: Colors.black,
+                  color: textColor,
                   fontSize: size.width * 0.08,
                   letterSpacing: 1),
             ),
@@ -48,6 +58,10 @@ class _ForGotPasswordState extends State<ForGotPassword> {
                 margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                 child: TextField(
                   controller: _controller,
+                  style: TextStyle(color: textColor),
+                  decoration: InputDecoration(
+                    focusColor: textColor,
+                  ),
                 )),
             SizedBox(
               height: size.height * 0.06,
