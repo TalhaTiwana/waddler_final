@@ -64,7 +64,19 @@ dependencies:
   flutter_local_notifications:
   maps_launcher: ^2.0.1
   flutter_staggered_animations: ^1.0.0
-  stripe_payment: ^1.1.4
+  stripe_payment: ^1.1.0
+  flutter_credit_card: ^3.0.1
+  get_storage:
+  flutter_switch: ^0.3.2
+  # create pdf document
+  pdf: ^3.1.0
+
+  # save file
+  path_provider: ^2.0.1
+
+  # open pdf document
+  open_file: ^3.1.0
+
 
 dev_dependencies:
   flutter_test:

@@ -28,7 +28,7 @@ class _NearByLocationState extends State<NearByLocation> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: primaryDarkClr,
+          backgroundColor: primaryDarkClrLightTheme,
           title: Text("Daycare centers under 5km",
               style: TextStyle(
                   color: Colors.white,
@@ -45,8 +45,8 @@ class _NearByLocationState extends State<NearByLocation> {
                     begin: const FractionalOffset(0.0, 0.0),
                     end: const FractionalOffset(2.0, 2.0),
                     colors: [
-                      primaryClr.withOpacity(0.2),
-                      primaryClr.withOpacity(0.2)
+                      primaryClrLightTheme.withOpacity(0.2),
+                      primaryClrLightTheme.withOpacity(0.2)
                     ]),
               ),
               child: FutureBuilder(

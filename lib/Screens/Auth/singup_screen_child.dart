@@ -161,7 +161,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                         right: size.width * 0.024)
                     : null,
                 child: DropdownButton<String>(
-                  iconEnabledColor: primaryClr,
+                  iconEnabledColor: primaryClrLightTheme,
                   isExpanded: true,
                   elevation: 2,
                   hint: Text(
@@ -210,7 +210,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                         right: size.width * 0.024)
                     : null,
                 child: DropdownButton<String>(
-                  iconEnabledColor: primaryClr,
+                  iconEnabledColor: primaryClrLightTheme,
                   isExpanded: true,
                   elevation: 2,
                   hint: Text(
@@ -243,7 +243,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                       left: size.width * 0.024,
                       right: size.width * 0.024),
                   child: DropdownButton<String>(
-                    iconEnabledColor: primaryClr,
+                    iconEnabledColor: primaryClrLightTheme,
                     isExpanded: true,
                     elevation: 2,
                     hint: bloodGroupValue == null
@@ -350,7 +350,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                     height: size.height * 0.06,
                     width: size.width,
                     decoration: BoxDecoration(
-                        color: primaryDarkClr,
+                        color: primaryDarkClrLightTheme,
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       "$uploadImageBtnTxt",
@@ -376,7 +376,7 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
                     height: size.height * 0.06,
                     width: size.width,
                     decoration: BoxDecoration(
-                        color: primaryDarkClr,
+                        color: primaryDarkClrLightTheme,
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       "Continue",
@@ -457,16 +457,16 @@ class _SignUpScreenChildState extends State<SignUpScreenChild> {
         //   duration: const Duration(seconds: 1, milliseconds: 500),
         //   backgroundColor: primaryDarkClr,
         // );
-        Fluttertoast.showToast(msg: 'Check your email Box',textColor: Colors.white,backgroundColor: primaryDarkClr);
+        Fluttertoast.showToast(msg: 'Check your email Box',textColor: Colors.white,backgroundColor: primaryDarkClrLightTheme);
         Navigator.pop(context);
         Navigator.pop(context);
       } else {
      Fluttertoast.showToast(msg: Provider.of<AUthProvider>(context, listen: false).signUpErrorGet(),
-     backgroundColor: primaryDarkClr,textColor: Colors.white);
+     backgroundColor: primaryDarkClrLightTheme,textColor: Colors.white);
       }
     } else {
       Fluttertoast.showToast(msg: 'Something is missing',textColor: Colors.white,
-      backgroundColor: primaryDarkClr);
+      backgroundColor: primaryDarkClrLightTheme);
 
     }
   }

@@ -19,7 +19,7 @@ class _SearchByRatingState extends State<SearchByRating> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: primaryDarkClr,
+          backgroundColor: primaryDarkClrLightTheme,
           title: Text("Daycare centers under 5km",style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -35,8 +35,8 @@ class _SearchByRatingState extends State<SearchByRating> {
                     begin: const FractionalOffset(0.0, 0.0),
                     end: const FractionalOffset(2.0, 2.0),
                     colors: [
-                      primaryClr.withOpacity(0.2),
-                      primaryClr.withOpacity(0.2)
+                      primaryClrLightTheme.withOpacity(0.2),
+                      primaryClrLightTheme.withOpacity(0.2)
                     ]
                 ),
               ),

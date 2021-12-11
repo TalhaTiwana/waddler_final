@@ -117,7 +117,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             //     }
             //   },
             // ),
-            backgroundColor: primaryClr.withOpacity(0.8),
+            backgroundColor: primaryClrLightTheme.withOpacity(0.8),
             actions: [
               Visibility(
                 visible: searchIsVisible,
@@ -150,7 +150,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           height: size.height * 0.01,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: primaryDarkClr,
+                            color: primaryDarkClrLightTheme,
                           ),
                           child: const Icon(
                             Icons.arrow_right_alt_sharp,
@@ -180,8 +180,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     begin: const FractionalOffset(0.0, 0.0),
                     end: const FractionalOffset(2.0, 2.0),
                     colors: [
-                  primaryClr.withOpacity(0.8),
-                  primaryClr.withOpacity(0.5)
+                  primaryClrLightTheme.withOpacity(0.8),
+                  primaryClrLightTheme.withOpacity(0.5)
                 ])),
             child: weather == null
                 ? const Center(
@@ -488,7 +488,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       margin: EdgeInsets.symmetric(
                                           horizontal: size.width * 0.03),
                                       decoration: BoxDecoration(
-                                          color: primaryClr.withOpacity(0.9),
+                                          color: primaryClrLightTheme.withOpacity(0.9),
                                           borderRadius:
                                               BorderRadius.circular(25),
                                           boxShadow: [
@@ -595,7 +595,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       margin: EdgeInsets.symmetric(
                                           horizontal: size.width * 0.03),
                                       decoration: BoxDecoration(
-                                          color: primaryClr.withOpacity(0.9),
+                                          color: primaryClrLightTheme.withOpacity(0.9),
                                           borderRadius:
                                               BorderRadius.circular(25),
                                           boxShadow: [
@@ -690,7 +690,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                         right: size.width * 0.04,
                                         bottom: size.height * 0.03),
                                     decoration: BoxDecoration(
-                                        color: primaryClr,
+                                        color: primaryClrLightTheme,
                                         borderRadius:
                                             BorderRadius.circular(25)),
                                     child: Row(

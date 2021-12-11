@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waddler/Style/colors.dart';
 
@@ -19,6 +20,7 @@ class _ForGotPasswordState extends State<ForGotPassword> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
+          backgroundColor: GetStorage().read('isDark')==true?Colors.black:Colors.white,
       body: Container(
         width: size.width,
         decoration: BoxDecoration(
@@ -26,8 +28,8 @@ class _ForGotPasswordState extends State<ForGotPassword> {
                 begin: const FractionalOffset(0.0, 0.0),
                 end: const FractionalOffset(2.0, 2.0),
                 colors: [
-              primaryClr.withOpacity(0.8),
-              primaryClr.withOpacity(0.5)
+              primaryClrLightTheme.withOpacity(0.8),
+              primaryClrLightTheme.withOpacity(0.5)
             ])),
         child: Column(
           children: [
@@ -53,7 +55,7 @@ class _ForGotPasswordState extends State<ForGotPassword> {
             MaterialButton(
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * 0.35, vertical: size.height * 0.02),
-              color: primaryDarkClr,
+              color: primaryDarkClrLightTheme,
               onPressed: !buttonIsPressed
                   ? () {
                       setState(() {

@@ -14,6 +14,7 @@ import 'package:waddler/Screens/OnlinePayment/online_payment.dart';
 import 'package:waddler/Screens/Profile/profile.dart';
 import 'package:waddler/Screens/faq/faq.dart';
 import 'package:waddler/Screens/fetching_daycare_centers/fetching_daycare_centers.dart';
+import 'package:waddler/Screens/settings/settings_screen.dart';
 import 'package:waddler/Style/colors.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -35,6 +36,7 @@ class _MainScreenState extends State<MainScreen> {
     ),
     const OnlinePayment(),
     const FAQ(),
+    const SettingsScreen()
   ];
 
   List<String> images = [
@@ -45,7 +47,8 @@ class _MainScreenState extends State<MainScreen> {
     'images/main_screen/live.png',
     'images/main_screen/online_payment.png',
     'images/main_screen/faq.png',
-    'images/main_screen/logout.png'
+    'images/settings.png',
+    'images/main_screen/logout.png',
   ];
 
   List<String> titles = [
@@ -56,7 +59,8 @@ class _MainScreenState extends State<MainScreen> {
     'Live',
     'Online \nPayment',
     'F.A.Q',
-    'Logout'
+    'Settings',
+        'Logout'
   ];
 
   @override
@@ -100,7 +104,7 @@ class _MainScreenState extends State<MainScreen> {
                             child: FadeInAnimation(
                               child: InkWell(
                                 onTap: () {
-                                  if (index == 7) {
+                                  if (index == 8) {
                                     _showDialog(size, context);
                                   } else {
                                     screenPush(context, widgets[index]);
@@ -115,7 +119,7 @@ class _MainScreenState extends State<MainScreen> {
                                   width: size.width * 0.4,
                                   height: size.height * 0.4,
                                   decoration: BoxDecoration(
-                                      color: primaryClr,
+                                      color: primaryClrLightTheme,
                                       borderRadius: BorderRadius.circular(20)),
                                   child: Column(
                                     children: [

@@ -25,7 +25,7 @@ class _FAQState extends State<FAQ> {
             },
           ),
           centerTitle: true,
-          backgroundColor: primaryDarkClr,
+          backgroundColor: primaryDarkClrLightTheme,
           title: Text("F.A.Q"),
         ),
         body: Container(

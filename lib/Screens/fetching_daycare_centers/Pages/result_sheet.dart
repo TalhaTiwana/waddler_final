@@ -35,8 +35,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                 begin: const FractionalOffset(0.0, 0.0),
                 end: const FractionalOffset(2.0, 2.0),
                 colors: [
-                  primaryClr.withOpacity(0.5),
-                  primaryClr.withOpacity(0.2)
+                  primaryClrLightTheme.withOpacity(0.5),
+                  primaryClrLightTheme.withOpacity(0.2)
                 ]
             )
         ),

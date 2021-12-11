@@ -60,7 +60,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
     if (image1 != null) {
       Future.delayed(const Duration(seconds: 1), () {
         uploadImageToFireStore(buildContext: _buildContext, code: code);
-        Fluttertoast.showToast(msg: 'Updated',backgroundColor: primaryDarkClr,textColor: Colors.white);
+        Fluttertoast.showToast(msg: 'Updated',backgroundColor: primaryDarkClrLightTheme,textColor: Colors.white);
 
         Navigator.pop(context);
       });
@@ -110,7 +110,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-            backgroundColor: primaryClr,
+            backgroundColor: primaryClrLightTheme,
             appBar: AppBar(
               title: Text(
                 "Profile",
@@ -119,10 +119,10 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                 ),
               ),
               centerTitle: true,
-              backgroundColor: primaryDarkClr,
+              backgroundColor: primaryDarkClrLightTheme,
               bottom: TabBar(
                 controller: _tabController,
-                indicatorColor: primaryDarkClr,
+                indicatorColor: primaryDarkClrLightTheme,
                 indicatorSize: TabBarIndicatorSize.tab,
                 labelPadding: EdgeInsets.only(bottom: size.height * 0.01),
                 onTap: (value) {},
@@ -178,7 +178,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                 width: size.width * 0.08,
                                 height: size.width * 0.08,
                                 decoration: BoxDecoration(
-                                  color: primaryDarkClr,
+                                  color: primaryDarkClrLightTheme,
                                   shape: BoxShape.circle,
                                 ),
                                 child: IconButton(
@@ -381,7 +381,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                 width: size.width * 0.08,
                                 height: size.width * 0.08,
                                 decoration: BoxDecoration(
-                                  color: primaryDarkClr,
+                                  color: primaryDarkClrLightTheme,
                                   shape: BoxShape.circle,
                                 ),
                                 child: IconButton(
@@ -492,7 +492,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                       height: size.height * 0.06,
                       width: size.width,
                       decoration: BoxDecoration(
-                          color: primaryDarkClr,
+                          color: primaryDarkClrLightTheme,
                           borderRadius: BorderRadius.circular(20)),
                       child: Text(
                         "Done",

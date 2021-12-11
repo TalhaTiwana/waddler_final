@@ -30,7 +30,7 @@ class _ExpandedCardState extends State<ExpandedCard> {
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
         margin: EdgeInsets.only(top: size.height * 0.01),
         decoration: BoxDecoration(
-          color: isExpanded ? primaryDarkClr : primaryClr,
+          color: isExpanded ? primaryDarkClrLightTheme : primaryClrLightTheme,
           borderRadius: BorderRadius.circular(10),
         ),
         width: size.width,

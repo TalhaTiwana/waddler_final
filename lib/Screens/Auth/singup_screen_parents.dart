@@ -277,7 +277,7 @@ class _SignUpScreenParentsState extends State<SignUpScreenParents> {
                     height: size.height * 0.06,
                     width: size.width,
                     decoration: BoxDecoration(
-                        color: primaryDarkClr,
+                        color: primaryDarkClrLightTheme,
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       "Continue",
@@ -523,7 +523,7 @@ settingModalBottomSheetAddress(BuildContext context, Size size) {
                         height: size.height * 0.06,
                         width: size.width,
                         decoration: BoxDecoration(
-                            color: primaryDarkClr,
+                            color: primaryDarkClrLightTheme,
                             borderRadius: BorderRadius.circular(20)),
                         child: Text(
                           "Okay",

@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     'Waddler',
                     textStyle: GoogleFonts.courgette(
                         letterSpacing: 1,
-                        color: primaryDarkClr,
+                        color: primaryDarkClrLightTheme,
                         fontWeight: FontWeight.w600,
                         fontSize: size.width * 0.09),
                     speed: const Duration(milliseconds: 150),
